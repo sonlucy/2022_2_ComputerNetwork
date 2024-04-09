@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title> Dog animation </title>
+</head>
+
+<body>
+
+<h1>We can move the dog with JAVASCRIPT!</h1>
+
+<canvas id="myCanvas" width="800" height="600"></canvas>
+
+<script>
+  var myVar=setInterval(function(){running()},100);
+  var canvas = document.getElementById("myCanvas");
+  var context2d = canvas.getContext("2d");
+  var img_index=1;
+  var img_max_index=9;
+  var imgObj = new Array(10);
+
+  for( var i=1; i<10; ++i){
+     imgObj[i] = new Image();
+     imgObj[i].src = "dog"+i+".png";
+  }
+
+  var x = 0;
+  var y = 50;
+  var step = 30;
+
+  function running() {
+    context2d.clearRect( x-step, y, step, imgObj[img_index].height );
+    context2d.drawImage(imgObj[img_index], x, y);
+
+    img_index += 1;
+    if( img_index>=img_max_index ) img_index = 1;
+    x += step;
+    if( canvas.width < x ){
+	x= 0;
+    }
+  }
+</script>
+
+</body>
+</html>
